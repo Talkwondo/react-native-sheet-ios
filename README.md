@@ -6,6 +6,7 @@ make an ios sheet to show additional information on top of the current screen.
 
 ```sh
 npm install react-native-sheet-ios
+cd ios && pod install
 ```
 
 ## Usage
