@@ -1,6 +1,5 @@
 const React = require('react');
 import { StyleSheet, View, Button, Text, Dimensions } from 'react-native';
-//@ts-ignore
 import { SheetIosView } from 'react-native-sheet-ios';
 
 const Sample = () => {
@@ -17,6 +16,7 @@ export default function App(): JSX.Element {
     <View style={styles.container}>
       <SheetIosView
         presnetSheet={present}
+        halfSheet
         onDismissSheet={() => {
           setPresent(!present);
         }}

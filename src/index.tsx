@@ -12,8 +12,12 @@ const LINKING_ERROR =
   '- You are not using Expo Go\n';
 
 type SheetIosProps = {
-  color: string;
+  present: boolean;
   style: ViewStyle;
+  onDismissSheet: () => void;
+  showCloseButton: boolean;
+  halfSheet: boolean;
+  closeButtonColor: string;
 };
 
 const ComponentName = 'SheetIosView';

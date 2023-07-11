@@ -9,24 +9,26 @@ npm install react-native-sheet-ios
 ```
 
 ## Usage
+
 The library only works for IOS and min version 13, please make a condition otherwise fatal error may occur.
 all props works, TS will be add soon.
 The view inside the sheet is a child component, styles should be written there.
 
 ```js
-import { SheetIosView } from "react-native-sheet-ios";
+import { SheetIosView } from 'react-native-sheet-ios';
 
 // ...
 const [present, setPresent] = React.useState(false);
 
 <SheetIosView
-    presnetSheet={present} 
-    onDismissSheet={() => setPresent(!present)} // callback when dismissed
-    showCloseButton // can be hidden
-    closeButtonColor={'000080'} // hex color only!
-  >
-    <ChildComponent />
-  </SheetIosView>
+  presnetSheet={present}
+  halfSheet // support only for ios 16
+  onDismissSheet={() => setPresent(!present)} // callback when dismissed
+  showCloseButton // can be hidden
+  closeButtonColor={'000080'} // hex color only!
+>
+  <ChildComponent />
+</SheetIosView>;
 ```
 
 ## Contributing
