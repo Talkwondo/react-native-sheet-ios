@@ -4,8 +4,8 @@ import { SheetIosView } from 'react-native-sheet-ios';
 
 const Sample = () => {
   return (
-    <View style={{ display: 'flex', width: Dimensions.get('screen').width }}>
-      <Text style={{ textAlign: 'center' }}>This is a sample 1</Text>
+    <View style={styles.sampleContainer}>
+      <Text style={styles.text}>This is a sample 1</Text>
     </View>
   );
 };
@@ -44,5 +44,12 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     marginVertical: 20,
+  },
+  sampleContainer: {
+    display: 'flex',
+    width: Dimensions.get('screen').width,
+  },
+  text: {
+    textAlign: 'center',
   },
 });
