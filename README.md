@@ -32,6 +32,14 @@ const [present, setPresent] = React.useState(false);
 </SheetIosView>;
 ```
 
+## Example
+
+
+
+https://github.com/Talkwondo/react-native-sheet-ios/assets/20122139/402515b9-1f1d-4564-8dff-9bc8b9af6145
+
+
+
 ## Contributing
 
 See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
