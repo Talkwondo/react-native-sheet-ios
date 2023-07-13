@@ -18,6 +18,7 @@ export default function App(): JSX.Element {
         presnetSheet={present}
         halfSheet
         onDismissSheet={() => {
+          console.log('dismiss');
           setPresent(!present);
         }}
         showCloseButton

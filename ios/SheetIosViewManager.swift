@@ -33,7 +33,6 @@ struct SheetView: View {
         VStack {
             if(showCloseButton) {
                 Button(action: {
-                    onDismiss()
                     presentedSheet.toggle()
                 }, label: {
                     Image(systemName: "xmark.circle.fill").resizable()
