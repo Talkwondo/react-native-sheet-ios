@@ -1,6 +1,6 @@
 {
   "name": "react-native-sheet-ios",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "make an ios sheet to show additional information on top of the current screen.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
