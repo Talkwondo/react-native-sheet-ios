@@ -15,8 +15,9 @@ export default function App(): JSX.Element {
   return (
     <View style={styles.container}>
       <SheetIosView
-        presnetSheet={present}
+        present={present}
         halfSheet
+        cancelButton
         onDismissSheet={() => {
           setPresent(!present);
         }}

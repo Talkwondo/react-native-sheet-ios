@@ -12,14 +12,40 @@ const LINKING_ERROR =
   '- You are not using Expo Go\n' +
   '- You are running ios operation system';
 
-type SheetIosProps = {
+export interface SheetIosProps {
+  /**
+   * Present the Sheet IOS. recommend to use useState of this boolean variable.
+   */
   present: boolean;
-  style: ViewStyle;
+  /**
+   * Style to the Sheet, better to implement the style in the children component.
+   */
+  style?: ViewStyle;
+  /**
+   * Show a native "X" button via SFSymbol.
+   */
+  cancelButton?: boolean;
+  /**
+   * Callback of dismiss Sheet, called when gusture down or any button action.
+   */
   onDismissSheet: () => void;
-  showCloseButton: boolean;
-  halfSheet: boolean;
-  closeButtonColor: string;
-};
+  /**
+   * Show a close button native, this will override the "X" button if both of them are true
+   */
+  showCloseButton?: boolean;
+  /**
+   * Present half sheet, only works in IOS 16.
+   */
+  halfSheet?: boolean;
+  /**
+   * Color of the "X" button, refer only hex string without #
+   */
+  closeButtonColor?: string;
+  /**
+   * Children of the screen.
+   */
+  children: React.ReactNode;
+}
 
 const ComponentName = 'SheetIosView';
 

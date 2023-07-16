@@ -26,20 +26,32 @@ struct ComponentView: UIViewRepresentable {
 struct SheetView: View {
     @Binding var presentedSheet: Bool
     var showCloseButton: Bool
+    var cancelButton: Bool;
     var closeButtonColor: String
     var onDismiss: () -> Void
     var componentRender: UIView
     var body: some View {
         VStack {
-            if(showCloseButton) {
-                Button(action: {
-                    presentedSheet.toggle()
-                }, label: {
-                    Image(systemName: "xmark.circle.fill").resizable()
-                        .foregroundColor(Color(hex: closeButtonColor))
-                        .frame(width: 35, height: 35)
-                }).position(CGPoint(x: UIScreen.screenWidth-30, y: 30))
+            HStack {
+                if(cancelButton) {
+                    Button(action: {
+                        presentedSheet.toggle()
+                    }, label: {
+                        Text("Cancel").foregroundColor(.blue)
+                            .font(.system(.body, design: .default)).bold()
+                    }).position(CGPoint(x: 50, y: 30));
+                }
+                if(showCloseButton) {
+                    Button(action: {
+                        presentedSheet.toggle()
+                    }, label: {
+                        Image(systemName: "xmark.circle.fill").resizable()
+                            .foregroundColor(Color(hex: closeButtonColor))
+                            .frame(width: 35, height: 35)
+                    }).position(CGPoint(x: UIScreen.screenWidth-30, y: 30))
+                }
             }
+           
             ComponentView(componentRender: componentRender)
         }.frame(width: UIScreen.screenWidth)
     }
@@ -52,9 +64,10 @@ struct SheetIOSWrapper: View {
     var halfSheet: Bool;
     var showCloseButton: Bool
     var closeButtonColor: String
+    var cancelButton: Bool;
     var componentRender: UIView
     var onDismiss: () -> Void
-    init(present: Bool, onDismiss: @escaping ()-> Void, closeButtonColor: String, showCloseButton: Bool, componentRender: UIView, halfSheet:Bool) {
+    init(present: Bool, onDismiss: @escaping ()-> Void, closeButtonColor: String, showCloseButton: Bool, componentRender: UIView, halfSheet:Bool, cancelButton: Bool) {
         self.present = present
         self.presentedSheet = present
         self.onDismiss = onDismiss
@@ -62,6 +75,7 @@ struct SheetIOSWrapper: View {
         self.showCloseButton = showCloseButton
         self.componentRender = componentRender
         self.halfSheet = halfSheet
+        self.cancelButton = cancelButton
     }
     var body: some View {
         ZStack{}
@@ -71,14 +85,14 @@ struct SheetIOSWrapper: View {
                 if #available(iOS 16.0, *) {
                     if(halfSheet) {
                         HalfSheet {
-                            SheetView(presentedSheet: $presentedSheet, showCloseButton: showCloseButton, closeButtonColor: closeButtonColor, onDismiss: onDismiss, componentRender: componentRender)
+                            SheetView(presentedSheet: $presentedSheet, showCloseButton: showCloseButton, cancelButton: cancelButton, closeButtonColor: closeButtonColor, onDismiss: onDismiss, componentRender: componentRender)
                         }
                     } else {
-                        SheetView(presentedSheet: $presentedSheet, showCloseButton: showCloseButton, closeButtonColor: closeButtonColor, onDismiss: onDismiss, componentRender: componentRender)
+                        SheetView(presentedSheet: $presentedSheet, showCloseButton: showCloseButton, cancelButton: cancelButton, closeButtonColor: closeButtonColor, onDismiss: onDismiss, componentRender: componentRender)
                     }
                     
                 } else {
-                    SheetView(presentedSheet: $presentedSheet, showCloseButton: showCloseButton, closeButtonColor: closeButtonColor, onDismiss: onDismiss, componentRender: componentRender)
+                    SheetView(presentedSheet: $presentedSheet, showCloseButton: showCloseButton, cancelButton: cancelButton, closeButtonColor: closeButtonColor, onDismiss: onDismiss, componentRender: componentRender)
                 }
             }
     }
@@ -89,19 +103,20 @@ class SheetIosView: UIView {
     @objc var closeButtonColor: NSString = "000000"
     @objc var showCloseButton: Bool = false
     @objc var halfSheet: Bool = false
+    @objc var cancelButton: Bool = false
     @objc var componentRender: UIView = UIView()
     @objc override func insertReactSubview(_ renderComponent: UIView!, at atIndex: Int) {
         componentRender = renderComponent
     }
     
-    @objc public var presnetSheet: Bool = false {
+    @objc public var present: Bool = false {
         didSet {
             if #available(iOS 13.0.0, *) {
-                let host = UIHostingController(rootView: SheetIOSWrapper(present: presnetSheet, onDismiss: onDismissEvent, closeButtonColor: closeButtonColor as String, showCloseButton: showCloseButton, componentRender: componentRender as UIView, halfSheet: halfSheet)).view
+                let host = UIHostingController(rootView: SheetIOSWrapper(present: present, onDismiss: onDismissEvent, closeButtonColor: closeButtonColor as String, showCloseButton: showCloseButton, componentRender: componentRender as UIView, halfSheet: halfSheet, cancelButton: cancelButton)).view
                 host?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
                 view.addSubview(host!)
             } else {
-                print("only support ios 13")
+                fatalError("this library only support ios 13")
                 // Fallback on earlier versions
             }
         }
