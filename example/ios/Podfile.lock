@@ -374,7 +374,7 @@ PODS:
   - React-jsinspector (0.72.1)
   - React-logger (0.72.1):
     - glog
-  - react-native-sheet-ios (0.1.0):
+  - react-native-sheet-ios (1.2.0):
     - RCT-Folly (= 2021.07.22.00)
     - React-Core
   - React-NativeModulesApple (0.72.1):
@@ -692,7 +692,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 184eae1ecdedc7a083194bd9ff809c93f08fd34c
   React-jsinspector: d0b5bfd1085599265f4212034321e829bdf83cc0
   React-logger: b8103c9b04e707b50cdd2b1aeb382483900cbb37
-  react-native-sheet-ios: 513908d597c946979fecf1de5ee145ff51de234c
+  react-native-sheet-ios: 7aff871603fe846cca6fe46ebcedee6786d5d822
   React-NativeModulesApple: 4f31a812364443cee6ef768d256c594ad3b20f53
   React-perflogger: 3d501f34c8d4b10cb75f348e43591765788525ad
   React-RCTActionSheet: f5335572c979198c0c3daff67b07bd1ad8370c1d
@@ -716,4 +716,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 7719a541ac7c4111da172b90aeb69e706973306c
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3
